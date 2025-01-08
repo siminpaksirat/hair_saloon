@@ -10,7 +10,10 @@ export default [
     files: ['**/*.{js,jsx}'],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        ...globals.node, // Enables Node.js globals
+      },
       parserOptions: {
         ecmaVersion: 'latest',
         ecmaFeatures: { jsx: true },
@@ -22,6 +25,11 @@ export default [
       react,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
+    },
+    env: {
+      browser: true, // Enables browser globals
+      node: true,    // Enables Node.js environment
+      es2021: true,  // Enables modern ECMAScript features
     },
     rules: {
       ...js.configs.recommended.rules,
